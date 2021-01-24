@@ -1,0 +1,90 @@
+/*Fuentes*/
+/*Loggin style*/
+@font-face {
+    font-family: oswaldo;
+    src: url("../fonts/oswaldo/static/Oswald-Regular.ttf");
+}
+
+* {
+    /* font-family: oswaldo, serif;*/
+    font-family: 'Roboto', sans-serif;
+}
+
+.boton {
+    background-color: #55C063;
+    width: 100%;
+    height: 40px;
+    font-weight: 900;
+    color: #fff;
+
+    text-align: center;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 5px 1px rgba(85, 192, 99, 1);
+    outline: none;
+    cursor: pointer;
+
+}
+
+.boton:hover {
+    background-color: #67E878;
+    box-shadow: 0 0 5px 1px rgba(103, 232, 120, 1);
+}
+
+.form_seccion {
+    /*    color: #98979E;*/
+    color: #3F3050;
+    border-radius: 2px;
+    box-shadow: 0 0 5px 3px rgba(220, 218, 228, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px;
+    margin-top: 63px;
+}
+
+.form_seccion p > a {
+    font-size: 13px;
+    color: #98979E;
+}
+
+.form_block {
+    padding: 10%;
+}
+
+.form_input {
+    height: 35px;
+    border: transparent;
+    border-bottom: 1px solid #98979E;
+
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    /*    color: #98979E;*/
+    color: #3F3050;
+}
+
+.text_seccion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+}
+
+.text_seccion figure {
+    padding: 50px;
+}
+
+.text_seccion figure img {
+    width: 100%;
+}
+
+.create_acount {
+    text-align: center;
+}
