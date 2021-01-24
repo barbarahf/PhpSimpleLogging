@@ -9,7 +9,17 @@
     /* font-family: oswaldo, serif;*/
     font-family: 'Roboto', sans-serif;
 }
-
+.button_link {
+    background-color: white;
+    color: black;
+    border: 2px solid #4CAF50;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-left: 20px;
+}
 .boton {
     background-color: #55C063;
     width: 100%;
@@ -24,6 +34,7 @@
     box-shadow: 0 0 5px 1px rgba(85, 192, 99, 1);
     outline: none;
     cursor: pointer;
+    min-width: 8vw;
 
 }
 
@@ -57,7 +68,6 @@
     height: 35px;
     border: transparent;
     border-bottom: 1px solid #98979E;
-
 }
 
 main {
@@ -67,6 +77,7 @@ main {
     align-items: center;
     /*    color: #98979E;*/
     color: #3F3050;
+    padding: 0 5vw 0 5vw;
 }
 
 .text_seccion {
@@ -87,4 +98,23 @@ main {
 
 .create_acount {
     text-align: center;
+}
+.error {
+    color: red;
+    text-shadow: 1px 1px rgb(255, 179, 179);
+    text-align: center;
+    font-size: 15px;
+}
+form {
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+}
+
+h2 {
+    text-align: center;
+}
+tr{
+    display: flex;
+    justify-content: space-between;
 }

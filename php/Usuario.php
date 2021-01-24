@@ -2,98 +2,154 @@
 
 class Usuario
 {
+    private $usuario;
+    private $clave;
     private $name;
-    private $cognoms;
     private $dataNaix;
-    private $correo;
-    private $telefon;
-    private $codPostal;
-    private $nie;
-    private $ciclo;
+    private $email;
+    private $asignaturasApuntadas; //Asginaturas es un array
+    private $notasSet;
 
-    public function __construct($name, $cognoms, $dataNaix, $correo, $telefon, $codPostal, $nie, $ciclo)
+
+    public function __construct($usuario, $clave, $name, $dataNaix, $email)
     {
+        $this->usuario = $usuario;
+        $this->clave = $clave;
         $this->name = $name;
-        $this->cognoms = $cognoms;
         $this->dataNaix = $dataNaix;
-        $this->correo = $correo;
-        $this->telefon = $telefon;
-        $this->codPostal = $codPostal;
-        $this->nie = $nie;
-        $this->ciclo = $ciclo;
+        $this->email = $email;
+
+
     }
 
-
-}
-
-$required = array($_POST['nom'], $_POST['cognom'], $_POST['dataNaix'], $_POST['correo'], $_POST['telefono'], $_POST['adressaPost"'], $_POST['nie'], $_POST['ciclo']);
-$error = false;
-foreach ($required as $field) {
-    if (empty($_POST[$field])) {
-        $error = true;
-    }
-}
-
-if ($error) {
-    if (validation(strval($_POST['nom']), strval($_POST['cognom']), intval($_POST['adressaPost']), strval($_POST['dni']))) {
-        $objecto = new Usuario(str_replace(' ', '', $_POST['nom']), str_replace(' ', '', $_POST['cognom']), $_POST['dataNaix'], str_replace(' ', '', $_POST['correo']), $_POST['telefono'], $_POST['adressaPost'], $_POST['dni'], $_POST['ciclo']);
-
-        echo "<table '>";
-        echo "<thead style='display:inline-block;' '>";
-        foreach ($_POST as $name => $val) {
-            echo "<tr>";
-            echo "<th colspan='1' style='border: black solid 1px'>" . $name . "</th>";
-            echo "</tr>";
+    function getPromedio()
+    {
+        $countNotas = 0;
+        $numAsig = count($this->asignaturasApuntadas);
+        foreach ($this->asignaturasApuntadas as $asignatura) {
+            $countNotas += $asignatura->getNota();
         }
-        echo " </thead>";
-        echo " <tbody style='display:inline-block;'>";
-
-        foreach ((array)$objecto as $value => $stringValue) {
-            echo "<tr>";
-            echo "<td style='border: black solid 1px'>" . strval($stringValue) . "</td>";
-            echo "</tr>";
-
-        }
-        echo " </tbody>";
-        echo "</table  '>";
-
-    } else {
-        header("Location:Error.html");
+        return $countNotas / $numAsig;
     }
-} else {
-    header("Location:EmptyLabel.html");
+
+    /**
+     * @return mixed
+     */
+    public function getUsuario()
+    {
+        return $this->usuario;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getClave()
+    {
+        return $this->clave;
+    }
+
+    /**
+     * @return array
+     */
+    public function getAsignaturas()
+    {
+        return $this->asignaturasApuntadas;
+    }
+
+    /**
+     * @param array asignaturasArray
+     */
+    public function setAsignaturas($asignaturasArray)
+    {
+        $this->asignaturasApuntadas = $asignaturasArray;
+
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getNotasSet()
+    {
+        return $this->notasSet;
+    }
+
+    /**
+     * @param bool $notasSet
+     */
+    public function setNotasSet(bool $notasSet)
+    {
+        $this->notasSet = $notasSet;
+    }
 }
 
-
-function validation($name, $cog, $postal, $dni)
+class Assignatura
 {
-    if (!containsNumbers($name) && !containsNumbers($cog) && is_numeric($postal) && dni($dni)) {
-        return true;
-    } else return false;
-}
+    private $uf;
+    private $modulo;
+    private $nota;
+
+    public function __construct($uf, $modulo)
+    {
+        $this->uf = $uf;
+        $this->modulo = $modulo;
+//        $this->nota = $nota;
+
+        //Dan error
+//        if (containsNumbers($name)) {
+//            throw new Exception('El nombre no puede tener números');
+//        }
+//        if (empty($usuario) || empty($clave) || empty($name) || empty($dataNaix) || empty($email)) {
+//            throw new Exception('No pueden existir compos vacios');
+//        }
 
 
-function dni($dni)
-{
-    $letra = substr($dni, -1);
-    $numeros = substr($dni, 0, -1);
-
-    if (substr("TRWAGMYFPDXBNJZSQVHLCKE", $numeros % 23, 1) == $letra && strlen($letra) == 1 && strlen($numeros) == 8) {
-        return true;
-    } else {
-        return false;
     }
-}
 
-/*
-Verifica si un string contiene numero
-*/
-function containsNumbers(string $contentTocheck)
-{
-    for ($x = 0; $x < strlen($contentTocheck); $x++) {
-        if (is_numeric($contentTocheck[$x])) {
-            return true;
-        }
+    /**
+     * @param mixed $nota
+     */
+    public function setNota($nota)
+    {
+        $this->nota = $nota;
     }
-    return false;
+
+    /**
+     * @return mixed
+     */
+    public function getUf()
+    {
+        return $this->uf;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getModulo()
+    {
+        return $this->modulo;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNota()
+    {
+        return $this->nota;
+    }
 }
